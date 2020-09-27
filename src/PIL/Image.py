@@ -2744,6 +2744,15 @@ def fromarray(obj, mode=None):
     arr = obj.__array_interface__
     shape = arr["shape"]
     ndim = len(shape)
+
+    # What is the type element in the arrar/obj
+    element = obj[0]
+    for i in range(ndim - 1):
+        element = element[0]
+
+    if sys.getsizeof(element) > 25:
+        raise TypeError("Expected array of type uint8.")
+
     strides = arr.get("strides", None)
     if mode is None:
         try:
