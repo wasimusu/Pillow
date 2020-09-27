@@ -2738,9 +2738,6 @@ def fromarray(obj, mode=None):
 
     .. versionadded:: 1.1.6
     """
-    if  obj.dtype != 'uint8':
-        raise TypeError("PIL can only handle arrays of type uint8.")
-
     arr = obj.__array_interface__
     shape = arr["shape"]
     ndim = len(shape)
